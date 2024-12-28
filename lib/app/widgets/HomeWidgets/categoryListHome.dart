@@ -24,7 +24,6 @@ class _CategoryListState extends State<CategoryList> {
       if (postController.posts.isEmpty) {
         return const Center(child: Text('Data Unavailable'));
       }
-
       // Wrap ListView in SizedBox to constrain height
       return SizedBox(
         height: 150,
