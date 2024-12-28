@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../controllers/CartController.dart';
+import 'mobileView/CheckOutPage.dart';
 
 class CartPage extends StatelessWidget {
   final CartController cartController = Get.find();
@@ -155,7 +156,7 @@ class CartPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton.icon(
                     onPressed: (){
-
+                      Get.to(() => CheckOutPage());
                     },
                     icon: Icon(Icons.check),
                     label: const Text('CheckOut',
