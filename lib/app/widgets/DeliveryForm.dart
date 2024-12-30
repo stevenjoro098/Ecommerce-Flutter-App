@@ -77,7 +77,7 @@ class DeliveryForm extends StatelessWidget {
                   return null;
                 },
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: 'Email',
                   hintText: 'Enter your email address',
@@ -86,7 +86,7 @@ class DeliveryForm extends StatelessWidget {
                   text: deliveryController.email.value,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: (value) => deliveryController.street.value = value,
                 validator: (value) {
@@ -104,7 +104,7 @@ class DeliveryForm extends StatelessWidget {
                   text: deliveryController.street.value,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: (value) => deliveryController.city.value = value,
                 validator: (value) {
@@ -130,7 +130,7 @@ class DeliveryForm extends StatelessWidget {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         await deliveryController.saveToSharedPreferences();
-                        Get.snackbar("Success", "Delivery information saved locally!");
+                        Get.snackbar("Success", "Delivery information Saved!");
                         Navigator.pop(context);
                       }
                     },

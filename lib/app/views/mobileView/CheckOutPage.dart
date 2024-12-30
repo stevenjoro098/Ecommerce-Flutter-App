@@ -60,7 +60,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           onPressed: (){
                             Get.to(() => CartPage());
                           },
-                          label: const Text('Back to Cart', style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 4, wordSpacing: 2),),
+                          label: const Text('Back to Cart', style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 3, fontSize: 15),),
                             icon: const Icon(Icons.arrow_back_ios_sharp),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
@@ -82,42 +82,52 @@ class _CheckOutPageState extends State<CheckOutPage> {
               const SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Card(
-                  elevation: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Card(
-                          elevation:2,
-                          color:Colors.orangeAccent,
-                          child: ListTile(
-                            leading: const Icon(Icons.info),
-                            title: const Text('Please update personal information below.', style: TextStyle(fontSize: 12),),
-                            trailing: IconButton(
-                                onPressed:()async{
-                                  await deliveryInfoController.loadFromSharedPreferences();
-                                  showModalBottomSheet(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    builder: (_) => DeliveryForm(),
-                                  );
-                                },
-                                icon: const Icon(Icons.edit)
+                child: Obx(() => Card(
+                    elevation: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation:2,
+                            color:deliveryInfoController.isDataValid.value
+                                ?Colors.orangeAccent
+                                : Colors.blueGrey[200]
+                            ,//Colors.orangeAccent,
+                            child: ListTile(
+                              leading: const Icon(Icons.info),
+                              title: const Text('Update personal information below.', style: TextStyle(fontSize: 12),),
+                              trailing: IconButton(
+                                  onPressed:()async{
+                                    await deliveryInfoController.loadFromSharedPreferences();
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      builder: (_) => DeliveryForm(),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit)
+                              ),
                             ),
                           ),
-                        ),
-                        const Text('Delivery Information.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        Text('Name: ${ deliveryInfoController.fullName}'),
-                        Text('Phone: ${ deliveryInfoController.phoneNumber}'),
-                        Text('Email: ${ deliveryInfoController.email}'),
-                        Text('Address: ${ deliveryInfoController.street},${deliveryInfoController.city}')
-
-                      ],
+                          Padding(
+                              padding: EdgeInsets.all(5.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Delivery Information.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                Text('Name: ${ deliveryInfoController.fullName}'),
+                                Text('Phone: ${ deliveryInfoController.phoneNumber}'),
+                                Text('Email: ${ deliveryInfoController.email}'),
+                                Text('Address: ${ deliveryInfoController.street},${deliveryInfoController.city}')
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ),
+                  )),
               ),
               const SizedBox(height: 15,),
               Padding(

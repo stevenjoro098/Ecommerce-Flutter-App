@@ -9,6 +9,14 @@ class DeliveryInfoController extends GetxController {
   var street = ''.obs;
   var city = ''.obs;
 
+  var isDataValid = false.obs; // Variable to track validation status
+
+  @override
+  void onInit() {
+    super.onInit();
+    validateStoredData(); // Validate stored data on controller initialization
+  }
+
   Future<void> saveToSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('fullName', fullName.value);
@@ -16,6 +24,23 @@ class DeliveryInfoController extends GetxController {
     await prefs.setString('email', email.value);
     await prefs.setString('street', street.value);
     await prefs.setString('city', city.value);
+  }
+  void validateStoredData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    fullName.value = prefs.getString('fullName') ?? '';
+    phoneNumber.value = prefs.getString('phoneNumber') ?? '';
+    street.value = prefs.getString('street') ?? '';
+
+    // Check if any required field is empty
+    if (fullName.value.trim().isEmpty ||
+        phoneNumber.value.trim().isEmpty ||
+        street.value.trim().isEmpty) {
+      isDataValid.value = false;
+      Get.snackbar("Error", "Some fields are missing or incomplete.");
+    } else {
+      isDataValid.value = true;
+    }
   }
 
   Future<void> loadFromSharedPreferences() async {
