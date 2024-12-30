@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/app/controllers/CartController.dart';
+import 'package:ecommerce_app/app/controllers/DeliveryInfoController.dart';
 import 'package:ecommerce_app/app/views/CartsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../widgets/DeliveryForm.dart';
 
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage({super.key});
@@ -12,6 +15,8 @@ class CheckOutPage extends StatefulWidget {
 
 class _CheckOutPageState extends State<CheckOutPage> {
   final CartController cartController = Get.find();
+  final DeliveryInfoController deliveryInfoController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,18 +96,23 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             leading: const Icon(Icons.info),
                             title: const Text('Please update personal information below.', style: TextStyle(fontSize: 12),),
                             trailing: IconButton(
-                                onPressed:(){
-
+                                onPressed:()async{
+                                  await deliveryInfoController.loadFromSharedPreferences();
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: (_) => DeliveryForm(),
+                                  );
                                 },
                                 icon: const Icon(Icons.edit)
                             ),
                           ),
                         ),
                         const Text('Delivery Information.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        const Text('Name:'),
-                        const Text('Phone:'),
-                        const Text('Email:'),
-                        const Text('Address:')
+                        Text('Name: ${ deliveryInfoController.fullName}'),
+                        Text('Phone: ${ deliveryInfoController.phoneNumber}'),
+                        Text('Email: ${ deliveryInfoController.email}'),
+                        Text('Address: ${ deliveryInfoController.street},${deliveryInfoController.city}')
 
                       ],
                     ),
