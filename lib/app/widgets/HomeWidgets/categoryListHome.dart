@@ -2,6 +2,7 @@ import 'package:ecommerce_app/app/views/ProductsList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:entry/entry.dart';
 
 import '../../controllers/categoryController.dart';
 import '../../controllers/ProductsController.dart';
@@ -39,12 +40,15 @@ class _CategoryListState extends State<CategoryList> {
               final post = postController.posts[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: IconButtonWithText(
-                  imagePath: post.iconPath,
-                  label: post.name,
-                  onPressed: () {
-                    Get.to(() => ProductsListPageView(categoryName: post.slug));
-                  },
+                child: Entry.all(
+                  duration: const Duration(seconds: 1),
+                  child: IconButtonWithText(
+                    imagePath: post.iconPath,
+                    label: post.name,
+                    onPressed: () {
+                      Get.to(() => ProductsListPageView(categoryName: post.slug));
+                    },
+                  ),
                 ),
               );
             },

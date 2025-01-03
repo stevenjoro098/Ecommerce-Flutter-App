@@ -4,6 +4,7 @@ import 'package:ecommerce_app/app/controllers/CartController.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../controllers/ProductsController.dart';
@@ -40,6 +41,7 @@ class _ProductsListState extends State<ProductsListPageView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.categoryName),
+        elevation: 3,
       ),
       body:Obx((){
         if(productController.isLoading.value){
@@ -53,16 +55,16 @@ class _ProductsListState extends State<ProductsListPageView> {
           children: [
             Center(
               child: SizedBox(
-                height: 200,
+                height: MediaQuery.of(context).size.height * .9,
                 width: MediaQuery.of(context).size.width * 0.95,
                 child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: productController.products.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
+                        crossAxisSpacing: 8.0,
                         mainAxisSpacing: 20.0,
-                      childAspectRatio: .9, // Adjust this for the height/width ratio
+                      childAspectRatio: 1, // Adjust this for the height/width ratio
                     ),
                     itemBuilder: (context, index){
                       var product = productController.products[index];
@@ -75,7 +77,7 @@ class _ProductsListState extends State<ProductsListPageView> {
                             children: [
                               Expanded(
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0), // Adds rounded corners
+                                  borderRadius: BorderRadius.circular(10.0), // Adds rounded corners
                                   child: Image.network(
                                     product.iconPath,
                                     fit: BoxFit.cover, // Makes the image fit within the card
@@ -99,7 +101,8 @@ class _ProductsListState extends State<ProductsListPageView> {
                                       'Ksh. ${product.price.toString()}',
                                       style: const TextStyle(
                                         color: Colors.green,
-                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
                                       ),
                                     ),
                                     const SizedBox(height: 1.0),

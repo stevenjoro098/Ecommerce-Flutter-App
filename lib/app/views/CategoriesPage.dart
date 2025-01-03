@@ -36,15 +36,21 @@ class CategoryPage extends StatelessWidget {
                   var category = categoryController.posts[index];
                     return Entry.all(
                       delay: Duration(milliseconds: random.nextInt(500)),
-                      child: Card(
-                        elevation: 1,
-                        child: ListTile(
-                          leading: Image.network(category.iconPath),
-                          title: Text(category.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.grey),),
-                          onTap: (){
-                            Get.to(()=> ProductsListPageView(categoryName: category.slug,));
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .1,
+                        child: Card(
+                          elevation: 1,
+                          child: ListTile(
+                            leading: Container(
 
-                          },
+                                child: Image.network(category.iconPath)
+                            ),
+                            title: Text(category.name, style: TextStyle(fontWeight: FontWeight.bold,letterSpacing: 2,fontSize: 18, color: Colors.grey),),
+                            onTap: (){
+                              Get.to(()=> ProductsListPageView(categoryName: category.slug,));
+
+                            },
+                          ),
                         ),
                       ),
                     );

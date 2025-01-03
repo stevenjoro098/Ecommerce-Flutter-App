@@ -1,14 +1,18 @@
+import 'package:ecommerce_app/app/controllers/CartController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
+  final String slug;
   final String imageUrl;
   final String productName;
   final double productPrice;
 
   ProductCard({
     super.key,
+    required this.slug,
     required this.imageUrl,
     required this.productName,
     required this.productPrice
@@ -16,6 +20,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Get.find();
     return Card(
       elevation: 3,
       margin:const EdgeInsets.all(12.0),
@@ -47,7 +52,7 @@ class ProductCard extends StatelessWidget {
                         onPressed: (){
 
                         },
-                        icon: Icon(Icons.favorite)
+                        icon: Icon(Icons.favorite_border)
                     )
                   ],
                 ),
@@ -61,7 +66,14 @@ class ProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10,),
                 ElevatedButton.icon(
-                    onPressed: (){},
+                    onPressed: (){
+                      cartController.addItem(
+                          slug,
+                          imageUrl,
+                          productName,
+                          productPrice
+                      );
+                    },
                     label: const Text('Add To Cart'),
                     icon: const Icon(Icons.add_shopping_cart),
                   style: ElevatedButton.styleFrom(

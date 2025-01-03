@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:entry/entry.dart';
 
 import '../../controllers/FlashProductsController.dart';
 import '../../views/mobileView/ProductDetailPage.dart';
@@ -46,10 +47,14 @@ class PopularProductsList extends StatelessWidget {
                     tag: '${products.name}-hero-image',
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * .6,
-                      child: ProductCard(
-                        imageUrl: products.iconPath,
-                        productName: products.name, // Display actual product name
-                        productPrice: products.price, // Display actual product price
+                      child: Entry.all(
+                        duration: Duration(seconds: 1),
+                        child: ProductCard(
+                          slug: products.slug,
+                          imageUrl: products.iconPath,
+                          productName: products.name, // Display actual product name
+                          productPrice: products.price, // Display actual product price
+                        ),
                       ),
                     ),
                   ),

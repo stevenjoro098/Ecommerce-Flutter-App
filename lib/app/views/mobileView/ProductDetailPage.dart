@@ -161,22 +161,22 @@ class AddCartButton extends StatelessWidget {
     //  Container is mandatory. It can hold images or whatever you want
     Container mandatoryContainer = Container(
       key: widgetKey,
-      width: 60,
-      height: 60,
+      width: 50,
+      height: 40,
       color: Colors.transparent,
-      child: Image.asset(
-        'assets/icons/product.png',
-        width: 60,
-        height: 60,
-      ),
+      child: Icon(
+        Icons.shopping_cart,
+        color: Colors.blue,
+        size: 35.0,
+      )
     );
 
     return ElevatedButton.icon(
       onPressed: (){
         onClick(widgetKey);
       },
-      icon: const Icon(Icons.shopping_cart),
-      label: mandatoryContainer,
+      icon: mandatoryContainer,//const Icon(Icons.shopping_cart),
+      label: const Text('Add to Cart', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),) ,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         backgroundColor: Colors.lightGreenAccent,

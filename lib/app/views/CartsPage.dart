@@ -1,3 +1,4 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,12 +18,16 @@ class CartPage extends StatelessWidget {
         title: const Text('Cart'),
         centerTitle: true,
         actions: [
-          IconButton(
+          IconButton.filled(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.grey[400]), // Set background color
+              ),
               onPressed: (){
                 cartController.clearCart();
               },
               icon: const Icon(Icons.remove_shopping_cart_sharp)
-          )
+          ),
+          SizedBox(width: 10,)
         ],
       ),
       body: SingleChildScrollView(
@@ -55,24 +60,29 @@ class CartPage extends StatelessWidget {
               else {
                 return Column(
                   children: [
-                    Center(
-                      child: Column(
-                        children: [
-                          const Text('Total Amount.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.grey
-                            ),
+                    SafeArea(
+                      child: Entry.all(
+                        duration: Duration(seconds: 1),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              const Text('Total Amount.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.grey
+                                ),
+                              ),
+                              Text(
+                                  cartController.totalAmount.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25
+                                ),
+                              )
+                            ],
                           ),
-                          Text(
-                              cartController.totalAmount.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25
-                            ),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 4,),
@@ -107,38 +117,52 @@ class CartPage extends StatelessWidget {
                               color: Colors.white,
                               elevation: 2,
                               child: ListTile(
-                                leading:Image.network(cartProduct.imageUrl, width: 70,height: 70,),
-                                title:Text(cartProduct.name),
+                                leading:ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      cartProduct.imageUrl,
+                                      width: 75,
+                                      height: 95,
+                                      fit: BoxFit.fill,
+                                    )
+                                ),
+                                title:Text(cartProduct.name,style: TextStyle(fontSize:19,fontWeight: FontWeight.bold),),
                                 subtitle: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(cartProduct.price.toString()),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        IconButton(
-                                          icon: const Icon(Icons.remove_circle),
-                                          onPressed: () {
-                                            if (cartProduct.quantity.value > 1) {
-                                              cartProduct.quantity.value--;
-                                            } else {
-                                              cartController.removeItem(cartProduct.slug);
-                                            }
-                                          },
-                                        ),
-                                        Obx(() {
-                                          return Text(
-                                            "${cartProduct.quantity.value}",
-                                            style: const TextStyle(fontSize: 16),
-                                          );
-                                        }),
-                                        IconButton(
-                                          icon: const Icon(Icons.add_circle),
-                                          onPressed: () {
-                                            cartProduct.quantity.value++;
-                                          },
-                                        ),
-                                      ],
+                                    Text(cartProduct.price.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue[100],
+                                        borderRadius: BorderRadius.circular(50)
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          IconButton(
+                                            icon: const Icon(Icons.remove_circle),
+                                            onPressed: () {
+                                              if (cartProduct.quantity.value > 1) {
+                                                cartProduct.quantity.value--;
+                                              } else {
+                                                cartController.removeItem(cartProduct.slug);
+                                              }
+                                            },
+                                          ),
+                                          Obx(() {
+                                            return Text(
+                                              "${cartProduct.quantity.value}",
+                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                            );
+                                          }),
+                                          IconButton(
+                                            icon: const Icon(Icons.add_circle),
+                                            onPressed: () {
+                                              cartProduct.quantity.value++;
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -147,6 +171,7 @@ class CartPage extends StatelessWidget {
                             ),
                           );
                     }),
+                    SizedBox(height: 20,),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton.icon(
