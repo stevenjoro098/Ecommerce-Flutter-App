@@ -15,6 +15,7 @@ class CategoryList extends StatefulWidget {
 class _CategoryListState extends State<CategoryList> {
   final CategoryController postController = Get.put(CategoryController());
   final ProductController productController = Get.put(ProductController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -24,30 +25,45 @@ class _CategoryListState extends State<CategoryList> {
       if (postController.posts.isEmpty) {
         return const Center(child: Text('Data Unavailable'));
       }
-      // Wrap ListView in SizedBox to constrain height
+      // Wrap ListView in ScrollConfiguration to enable smooth scrolling on Linux
       return SizedBox(
-        height: 150,
+        height: 100,
         width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: postController.posts.length,
-          itemBuilder: (context, index) {
-            final post = postController.posts[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: IconButtonWithText(
-                    imagePath: post.iconPath,
-                    label: post.name,
-                    onPressed: (){
-                      print(post.slug);
-                      Get.to(()=> ProductsListPageView(categoryName: post.slug,));
-                    },
-
-              ),
-            );
-          },
+        child: ScrollConfiguration(
+          behavior: CustomScrollBehavior(), // Custom behavior for smooth scrolling
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: postController.posts.length,
+            itemBuilder: (context, index) {
+              final post = postController.posts[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: IconButtonWithText(
+                  imagePath: post.iconPath,
+                  label: post.name,
+                  onPressed: () {
+                    Get.to(() => ProductsListPageView(categoryName: post.slug));
+                  },
+                ),
+              );
+            },
+          ),
         ),
       );
     });
+  }
+}
+
+// Custom ScrollBehavior for Linux scrolling compatibility
+class CustomScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child; // Removes any platform-specific visual effects
+  }
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const ClampingScrollPhysics(); // Ensures smooth scrolling
   }
 }

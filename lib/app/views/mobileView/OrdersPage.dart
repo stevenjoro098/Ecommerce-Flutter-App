@@ -6,7 +6,7 @@ class OrdersPageView extends StatefulWidget {
   final String firstName;
   final String email;
   final String address;
-  final double total;
+  final String total;
   final String created;
   final bool paid;
   const OrdersPageView({

@@ -32,7 +32,7 @@ class IconButtonWithText extends StatelessWidget {
           const SizedBox(height: 4.0), // Spacing between icon and text
           Text(
             label,
-            style: const TextStyle(fontSize: 12.0, color: Colors.black),
+            style: const TextStyle(fontSize: 14.0, color: Colors.blue, fontWeight: FontWeight.w900, letterSpacing: 2),
           ),
         ],
       ),

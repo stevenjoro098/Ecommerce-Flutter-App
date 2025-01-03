@@ -5,7 +5,7 @@ class OrderCard extends StatelessWidget {
   final String name;
   final String email;
   final String created;
-  final double total;
+  final String total;
   final bool paid;
   OrderCard({super.key,
     required this.orderCode,
@@ -30,7 +30,7 @@ class OrderCard extends StatelessWidget {
             Text("Name: ${name}", style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.grey),),
             email.isNotEmpty ? Text(email, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),) : const Text('No Email'),
             Text("Order Date: ${created}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-            Text("Total: ${total.toString()}",style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+            Text("Total: ${total}",style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
             (paid)
                 ? const Chip(label: Text('Paid'))
                 : Column(

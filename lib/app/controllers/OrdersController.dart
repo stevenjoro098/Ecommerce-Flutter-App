@@ -103,7 +103,7 @@ class OrderController extends GetxController {
       String firstName = resp['first_name'];
       String email = resp['email'];
       String address=resp['address'];
-      double total=resp['total'];
+      String total=resp['total'];
       String created=resp['created'];
       bool paid=resp['paid'];
 
