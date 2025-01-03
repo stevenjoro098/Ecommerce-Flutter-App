@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../controllers/DeliveryInfoController.dart';
 
-class DeliveryForm extends StatelessWidget {
+class UserDetailsForm extends StatelessWidget {
   final DeliveryInfoController deliveryController = Get.find();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

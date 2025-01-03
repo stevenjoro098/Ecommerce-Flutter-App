@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/app/controllers/CartController.dart';
+import 'package:ecommerce_app/app/views/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,8 +47,7 @@ class _HomePageState extends State<HomePage> {
           CategoryPage(),
           CartPage(),
           Center(child: Text('Favorites Page', style: TextStyle(fontSize: 24))),
-          Center(child: Text('Profile Page', style: TextStyle(fontSize: 24))),
-
+          ProfilePageView(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(

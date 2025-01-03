@@ -48,7 +48,7 @@ class CartPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 40,
                         height: 230,
                       ),
-                      Text('Cart Empty')
+                      const Text('Cart Empty',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),)
                     ],
                   );
                 }
@@ -147,37 +147,38 @@ class CartPage extends StatelessWidget {
                             ),
                           );
                     }),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton.icon(
+                        onPressed: (){
+                          Get.to(() => CheckOutPage());
+                        },
+                        icon: Icon(Icons.check),
+                        label: const Text('CheckOut',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 20.0,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          backgroundColor: Colors.lightGreenAccent,
+                          minimumSize: const Size(double.infinity, 50),
+                        ),
+                      ),
+                    )
                   ],
                 );
               }
             }),
               SizedBox(height: 20,),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton.icon(
-                    onPressed: (){
-                      Get.to(() => CheckOutPage());
-                    },
-                    icon: Icon(Icons.check),
-                    label: const Text('CheckOut',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 20.0,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    backgroundColor: Colors.lightGreenAccent,
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
-                ),
-              )
+
             ],
           ),
         ),

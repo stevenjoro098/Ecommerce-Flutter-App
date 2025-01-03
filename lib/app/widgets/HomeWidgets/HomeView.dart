@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/app/controllers/DeliveryInfoController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/IconButtonCircularBg.dart';
 import '../../widgets/SearchTextBar.dart';
@@ -16,6 +18,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final DeliveryInfoController deliveryInfoController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,19 +37,21 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   Column(
                     children: [
-                      Text('Delivery Address'),
-                      Text('92, High London'),
+                      Text(deliveryInfoController.fullName.toString()),
+                      Text(deliveryInfoController.street.toString()),
                     ],
                     ),
                   CircularIconButton(
                       icon: Icons.notifications,
-                      onPressed: (){},
+                      onPressed: (){
+
+                      },
                       backgroundColor: Colors.white60,
                   )
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: SearchTextBar(
 
                 ),

@@ -6,6 +6,7 @@ import 'app/controllers/CartController.dart';
 import 'app/controllers/DeliveryInfoController.dart';
 import 'app/controllers/ProductsController.dart';
 import 'app/controllers/categoryController.dart';
+import 'app/controllers/OrdersController.dart';
 
 
 void main() {
@@ -13,6 +14,7 @@ void main() {
   Get.put(ProductController());
   Get.put(CategoryController());
   Get.put(DeliveryInfoController());
+  Get.put(OrderController());
   runApp(const MyApp());
 }
 

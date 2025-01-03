@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/app/controllers/CartController.dart';
 import 'package:ecommerce_app/app/controllers/DeliveryInfoController.dart';
+import 'package:ecommerce_app/app/controllers/OrdersController.dart';
 import 'package:ecommerce_app/app/views/CartsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class CheckOutPage extends StatefulWidget {
 class _CheckOutPageState extends State<CheckOutPage> {
   final CartController cartController = Get.find();
   final DeliveryInfoController deliveryInfoController = Get.find();
-
+  final OrderController orderController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +43,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             itemBuilder: (context, index){
                             var item = cartController.items.values.toList()[index];
                             num total = item.quantity * item.price;
+                            orderController.addItem(item.slug, item.name,item.quantity.value, item.price);
                             return Card(
                               color: Colors.white,
                               child: ListTile(
@@ -92,7 +94,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           Card(
                             elevation:2,
                             color:deliveryInfoController.isDataValid.value
-                                ?Colors.orangeAccent
+                                ? Colors.orangeAccent
                                 : Colors.blueGrey[200]
                             ,//Colors.orangeAccent,
                             child: ListTile(
@@ -104,7 +106,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                     showModalBottomSheet(
                                       context: context,
                                       isScrollControlled: true,
-                                      builder: (_) => DeliveryForm(),
+                                      builder: (_) => UserDetailsForm(),
                                     );
                                   },
                                   icon: const Icon(Icons.edit)
@@ -112,7 +114,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -120,55 +122,44 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 Text('Name: ${ deliveryInfoController.fullName}'),
                                 Text('Phone: ${ deliveryInfoController.phoneNumber}'),
                                 Text('Email: ${ deliveryInfoController.email}'),
-                                Text('Address: ${ deliveryInfoController.street},${deliveryInfoController.city}')
+                                Text('Address: ${ deliveryInfoController.street},${deliveryInfoController.city}'),
+                                const SizedBox(height: 10,),
+                                ElevatedButton.icon(
+                                    onPressed: (){
+                                      orderController.placeOrder(
+                                        deliveryInfoController.fullName.toString(),
+                                        deliveryInfoController.phoneNumber.toString(),
+                                        deliveryInfoController.email.toString(),
+                                        deliveryInfoController.street.toString(),
+                                        deliveryInfoController.city.toString()
+                                      );
+
+
+                                    },
+                                    icon: const Icon(Icons.shopping_cart_checkout_sharp),
+                                    label: const Text('Make Order'),
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0,
+                                        horizontal: 18.0,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                      backgroundColor: Colors.green
+                                      ,
+                                      minimumSize: const Size(double.infinity, 50),
+                                    ),
+                                )
                               ],
                             ),
                           )
                         ],
                       ),
                     ),
-                  )),
-              ),
-              const SizedBox(height: 15,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('Mode of Payment', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        const Text('MPESA:'),
-                        const TextField(
-
-                        ),
-                        const SizedBox(height: 15,),
-                        ElevatedButton.icon(
-                            onPressed: (){
-
-                            },
-                            icon: const Icon(Icons.mobile_screen_share_outlined),
-                            label: const Text('Pay'),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 20.0,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            backgroundColor: Colors.green
-                            ,
-                            minimumSize: const Size(double.infinity, 50),
-                          ),
-                        )
-
-                      ],
-                    ),
-                  ),
+                  )
                 ),
-              )
+              ),
             ],
           ),
         ),

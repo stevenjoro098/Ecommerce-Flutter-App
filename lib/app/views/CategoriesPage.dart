@@ -1,5 +1,8 @@
 //Products List under category
+import 'dart:math';
+
 import 'package:ecommerce_app/app/controllers/categoryController.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +11,7 @@ import 'ProductsList.dart';
 class CategoryPage extends StatelessWidget {
   CategoryPage({super.key});
   final CategoryController categoryController = Get.find();
-
+  final random = Random();
   void initialize(BuildContext context){
     categoryController.fetchPosts();
   }
@@ -31,13 +34,19 @@ class CategoryPage extends StatelessWidget {
                 itemCount: categoryController.posts.length,
                   itemBuilder: (context, index){
                   var category = categoryController.posts[index];
-                    return ListTile(
-                      leading: Image.network(category.iconPath),
-                      title: Text(category.name),
-                      onTap: (){
-                        Get.to(()=> ProductsListPageView(categoryName: category.slug,));
+                    return Entry.all(
+                      delay: Duration(milliseconds: random.nextInt(500)),
+                      child: Card(
+                        elevation: 1,
+                        child: ListTile(
+                          leading: Image.network(category.iconPath),
+                          title: Text(category.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.grey),),
+                          onTap: (){
+                            Get.to(()=> ProductsListPageView(categoryName: category.slug,));
 
-                      },
+                          },
+                        ),
+                      ),
                     );
               })
             ],
