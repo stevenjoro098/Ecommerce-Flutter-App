@@ -119,6 +119,7 @@ class OrderController extends GetxController {
                   ));
       cartController.clearCart();
       items.clear();
+      fetchOrdersList();
     } else {
       // API call failed
       print('Failed to place the order');

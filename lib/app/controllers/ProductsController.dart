@@ -14,10 +14,11 @@ class ProductController extends GetxController{
       try{
         final response = await http.get(Uri.parse('http://127.0.0.1:9000/api/category/products/${categoryName}'));
         if(response.statusCode==200){
-          Future.delayed(Duration(seconds: 2), (){
+          Future.delayed(Duration(seconds: 1), (){
             final List<dynamic> data = jsonDecode(response.body);
             products.value = data.map((json) => Product.fromJson(json)).toList();
-          });
+          }
+          );
 
           }
         else{

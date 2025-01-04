@@ -40,7 +40,7 @@ class _ProductsListState extends State<ProductsListPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.categoryName),
+        title: Text(widget.categoryName.toUpperCase()),
         elevation: 3,
       ),
       body:Obx((){
