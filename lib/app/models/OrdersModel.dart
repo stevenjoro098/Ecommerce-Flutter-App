@@ -7,6 +7,7 @@ class Order {
   final String city;
   final String totalPrice;
   final DateTime orderDate;
+  final bool paid;
 
 
 
@@ -18,7 +19,8 @@ class Order {
     required this.address,
     required this.city,
     required this.totalPrice,
-    required this.orderDate
+    required this.orderDate,
+    required this.paid,
   });
 
   // Convert Order object to JSON
@@ -32,6 +34,7 @@ class Order {
       'city': city,
       'total': totalPrice,
       'orderDate': orderDate.toIso8601String(),
+       'paid':'',
     };
   }
 
@@ -45,7 +48,8 @@ class Order {
       address: json['address'],
       totalPrice: json['total'],
       orderDate: DateTime.parse(json['created']),
-      city:json['city']
+      city:json['city'],
+      paid: json['paid']
     );
   }
 }

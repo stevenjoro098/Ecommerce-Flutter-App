@@ -86,6 +86,7 @@ class OrderController extends GetxController {
       orderDate: orderDate.value, 
       city: city,
       orderCode: '',
+      paid: false
     );
 
     // Call API to place the order (replace with actual API endpoint)

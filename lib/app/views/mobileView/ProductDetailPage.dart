@@ -1,4 +1,5 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
+import 'package:ecommerce_app/app/widgets/StarRatingWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,15 +86,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             Entry.opacity(
               visible: visible,
               duration: const Duration(seconds: 3),
-              child: Hero(
-                tag: widget.slug,
-                child: ClipRRect(
-                  //borderRadius: BorderRadius.circular(12.0),
-                  child: Image.network(
-                    widget.imageUrl,
-                    width: MediaQuery.of(context).size.width,
-                    height: 300,
-                    fit: BoxFit.cover,
+              child: Card(
+                elevation: 4,
+                child: Hero(
+                  tag: widget.slug,
+                  child: ClipRRect(
+                    //borderRadius: BorderRadius.circular(12.0),
+                    child: Image.network(
+                      widget.imageUrl,
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -105,6 +109,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
+            StarRatingWidget(),
+            SizedBox(height: 10,),
             Entry.all(
               visible: visible,
               duration: const Duration(seconds: 1),
@@ -119,9 +125,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text(widget.productDescription),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Description:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                  Text(widget.productDescription),
+                ],
+              ),
             ),
             Entry.offset(
               visible: visible,
@@ -164,7 +177,7 @@ class AddCartButton extends StatelessWidget {
       width: 50,
       height: 40,
       color: Colors.transparent,
-      child: Icon(
+      child: const Icon(
         Icons.shopping_cart,
         color: Colors.blue,
         size: 35.0,

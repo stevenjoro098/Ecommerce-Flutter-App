@@ -96,7 +96,16 @@ class _HomeViewState extends State<HomeView> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Chip(label: Text('12:12:12')),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.5),
+                              child: Text('12:12:12'),
+                            )
+                        ),
                         TextButton(
                           onPressed: () {},
                           child: const Text('See all'),
