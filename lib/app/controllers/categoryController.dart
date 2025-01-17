@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../utils/api_constants.dart';
+
 class CategoryController extends GetxController {
   var posts = <Category>[].obs; // Observable list of posts
   var isLoading = true.obs; // Observable loading state
-
+  String url = APIConstants.categoryList;
   @override
   void onInit() {
     super.onInit();
@@ -16,7 +18,7 @@ class CategoryController extends GetxController {
   void fetchPosts() async {
     try {
       isLoading(true);
-      final response = await http.get(Uri.parse('http://127.0.0.1:9000/api/category'));
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);

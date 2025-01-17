@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../controllers/CartController.dart';
-import 'mobileView/CheckOutPage.dart';
+import '../../controllers/CartController.dart';
+import 'CheckOutPage.dart';
 
 class CartPage extends StatelessWidget {
   final CartController cartController = Get.find();

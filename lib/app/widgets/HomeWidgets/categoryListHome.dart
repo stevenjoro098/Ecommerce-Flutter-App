@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/app/views/ProductsList.dart';
+import 'package:ecommerce_app/app/views/mobileView/ProductsList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
