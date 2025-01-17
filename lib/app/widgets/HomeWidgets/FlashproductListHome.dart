@@ -20,7 +20,7 @@ class FlashProductGrid extends StatelessWidget {
         return const Center(child: Text('Data Unavailable'));
       }
       return Container(
-          margin: const EdgeInsets.symmetric(vertical: 10),
+          //margin: const EdgeInsets.symmetric(vertical: 10),
           //height: MediaQuery.of(context).size.height * 0.2,
         //width: MediaQuery.of(context).size.width,
         child: ScrollConfiguration(
@@ -48,7 +48,7 @@ class FlashProductGrid extends StatelessWidget {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * .6,
                     child: Entry.scale(
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       child: ProductCard(
                         slug: products.slug,
                         imageUrl: products.iconPath,
