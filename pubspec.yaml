@@ -36,6 +36,7 @@ dependencies:
   entry: ^1.0.0
   shared_preferences: ^2.0.18
   flutter_rating_bar: ^4.0.0
+  introduction_screen: ^3.1.14
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,7 +69,11 @@ flutter:
   assets:
      - assets/icons/shopping-cart.gif
      - assets/icons/product.png
-  #   - images/a_dot_ham.jpeg
+     - assets/icons/bag.gif
+     - assets/icons/grocery.gif
+     - assets/icons/login.gif
+     - assets/icons/laptop.gif
+       #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
