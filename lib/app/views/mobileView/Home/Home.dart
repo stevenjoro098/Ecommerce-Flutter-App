@@ -1,14 +1,14 @@
 import 'package:ecommerce_app/app/controllers/CartController.dart';
-import 'package:ecommerce_app/app/views/ProfilePage.dart';
+import 'package:ecommerce_app/app/views/mobileView/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/IconButtonWithText.dart';
 import '../../../widgets/HomeWidgets/HomeView.dart';
-import '../../CategoriesPage.dart';
+import '../CategoriesPage.dart';
 import '../../../controllers/CartController.dart';
 
-import '../../CartsPage.dart';
+import '../CartsPage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -46,7 +45,9 @@ class _HomePageState extends State<HomePage> {
           HomeView(),
           CategoryPage(),
           CartPage(),
-          Center(child: Text('Favorites Page', style: TextStyle(fontSize: 24))),
+          Center(
+              child: Text('Favorites Page', style: TextStyle(fontSize: 24))
+          ),
           ProfilePageView(),
         ],
       ),
