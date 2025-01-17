@@ -28,7 +28,7 @@ class DeliveryInfoController extends GetxController {
   void validateStoredData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    fullName.value = prefs.getString('fullName') ?? '';
+    fullName.value = prefs.getString('fullName') ?? 'John Doe';
     phoneNumber.value = prefs.getString('phoneNumber') ?? '';
     street.value = prefs.getString('street') ?? '';
 
@@ -45,9 +45,9 @@ class DeliveryInfoController extends GetxController {
 
   Future<void> loadFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
-    fullName.value = prefs.getString('fullName') ?? '';
+    fullName.value = prefs.getString('fullName') ?? 'John Doe';
     phoneNumber.value = prefs.getString('phoneNumber') ?? '';
-    email.value = prefs.getString('email') ?? '';
+    email.value = prefs.getString('email') ?? 'johndoe@gmail.com';
     street.value = prefs.getString('street') ?? '';
     city.value = prefs.getString('city') ?? '';
   }

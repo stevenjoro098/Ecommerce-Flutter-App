@@ -7,10 +7,8 @@ import 'package:get/get.dart';
 
 import '../../widgets/IconButtonCircularBg.dart';
 import '../../widgets/SearchTextBar.dart';
-import '../../widgets/IconButtonWithText.dart';
 import 'FlashproductListHome.dart';
 import 'categoryListHome.dart';
-//import 'PopularProductsList.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -25,37 +23,45 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Column(
         children: [
+          const SizedBox(height: 40,),
           Card(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircularIconButton(
-                      icon: Icons.settings,
-                      onPressed: () {},
-                    ),
-                    Column(
-                      children: [
-                        Text(deliveryInfoController.fullName.toString()),
-                        Text(deliveryInfoController.street.toString()),
-                      ],
-                    ),
-                    CircularIconButton(
-                      icon: Icons.notifications,
-                      onPressed: () {},
-                      backgroundColor: Colors.white60,
-                    )
-                  ],
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: SearchTextBar(),
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircularIconButton(
+                          icon: Icons.settings, onPressed: (){
+
+                      }
+                      ),
+                      Column(
+                        children: [
+                          Text(deliveryInfoController.fullName.toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 2),),
+                          Text(deliveryInfoController.email.toString(), style: const TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                      CircularIconButton(
+                          icon: Icons.notifications,
+                          onPressed: (){
+
+                          }
+                      ),
+                    ],
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SearchTextBar(),
+                  ),
+                ],
+              ),
             ),
           ),
           // Set a fixed height for the expanded area

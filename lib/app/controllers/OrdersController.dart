@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import '../models/OrdersModel.dart';
 import '../controllers/CartController.dart';
 import '../views/mobileView/OrdersPage.dart';
+import '../utils/api_constants.dart';
 
 class OrderController extends GetxController {
   var userfullname = ''.obs;
@@ -18,8 +19,12 @@ class OrderController extends GetxController {
   var totalPrice = ''.obs;
   var orderDate = DateTime.now().obs;
   var isDataValid = true.obs;
+
   CartController cartController = Get.find();
   DeliveryInfoController deliveryInfoController = Get.find();
+
+  String placeOrderUrl = APIConstants.placeOrder;
+  String ordersListUrl = APIConstants.placeOrder;
 
   @override
   void onInit(){
@@ -91,7 +96,7 @@ class OrderController extends GetxController {
 
     // Call API to place the order (replace with actual API endpoint)
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:9000/orders/api/create'),
+      Uri.parse(placeOrderUrl),
       body: jsonEncode(order.toJson()),
       headers: {'Content-Type': 'application/json'},
     );
@@ -107,7 +112,8 @@ class OrderController extends GetxController {
       String total=resp['total'];
       String created=resp['created'];
       bool paid=resp['paid'];
-
+      cartController.clearCart();
+      items.clear();
       Get.to(()=>OrdersPageView(
                   orderCode: orderCode,
                   firstName:firstName,
@@ -117,19 +123,17 @@ class OrderController extends GetxController {
                   created:created,
                   paid:paid
                   ));
-      cartController.clearCart();
-      items.clear();
       fetchOrdersList();
     } else {
       // API call failed
-      print('Failed to place the order');
+      Get.snackbar('Order','Failed to place the order');
     }
   }
 
   Future<void> fetchOrdersList() async{
     var email = deliveryInfoController.email.value;
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:9000/orders/api/orders/list'),
+      Uri.parse(ordersListUrl),
       body: jsonEncode({"email": email}),
       headers: {'Content-Type': 'application/json'},
     );

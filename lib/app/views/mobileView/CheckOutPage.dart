@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/app/controllers/CartController.dart';
 import 'package:ecommerce_app/app/controllers/DeliveryInfoController.dart';
 import 'package:ecommerce_app/app/controllers/OrdersController.dart';
-import 'package:ecommerce_app/app/views/CartsPage.dart';
+import 'package:ecommerce_app/app/views/mobileView/CartsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +18,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
   final CartController cartController = Get.find();
   final DeliveryInfoController deliveryInfoController = Get.find();
   final OrderController orderController = Get.find();
+  @override
+  void dispose(){
+    super.dispose();
+    cartController.clearCart();
+    deliveryInfoController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
