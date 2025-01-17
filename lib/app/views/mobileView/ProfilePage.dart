@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/DeliveryForm.dart';
-import 'mobileView/OrdersPage.dart';
+import '../../widgets/DeliveryForm.dart';
+import 'OrdersPage.dart';
 
 class ProfilePageView extends StatefulWidget {
    ProfilePageView({super.key});
