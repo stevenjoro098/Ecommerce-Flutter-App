@@ -1,6 +1,6 @@
 
 class APIConstants {
-  static const String baseUrl = 'http://192.168.100.16:9000';
+  static const String baseUrl = 'http://127.0.0.1:9000';
   
   static const String register = '${baseUrl}/api/customer/register/';
 

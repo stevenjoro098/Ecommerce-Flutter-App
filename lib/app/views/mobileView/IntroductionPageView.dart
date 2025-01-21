@@ -48,7 +48,8 @@ class _IntroPageState extends State<IntroPage> {
 
         ),
         PageViewModel(
-            title: 'Fast And Convenient', bodyWidget: const Text('Effortless Shopping at Your Fingertips! Watch your cart fill with amazing deals as you browse through a world of possibilities.',
+            title: 'Fast And Convenient',
+          bodyWidget: const Text('Effortless Shopping at Your Fingertips! Watch your cart fill with amazing deals as you browse through a world of possibilities.',
                     style:TextStyle(
                         fontSize: 17,
                         color: Colors.green
@@ -56,7 +57,7 @@ class _IntroPageState extends State<IntroPage> {
                   ),
             image: Card(
                 elevation: 3,
-                child: Image.asset('assets/icons/grocery.gif', fit: BoxFit.fill, width: double.infinity * 0.9),
+                child: Image.asset('assets/icons/grocery.gif', fit: BoxFit.fill, width: double.infinity * 0.8),
             ),
         )
 

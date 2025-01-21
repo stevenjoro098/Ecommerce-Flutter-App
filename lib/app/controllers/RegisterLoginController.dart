@@ -52,16 +52,17 @@ class AuthenticationController extends GetxController {
       body: jsonEncode(data),
       headers: {'Content-Type': 'application/json'},
     );
-    Get.to(() => HomePage());
+
     if (response.statusCode == 201) {
       // Order placed successfully
 
-
+      Get.to(() => HomePage());
       Get.snackbar('Login', 'Welcome!!');
       var resp = jsonDecode(response.body);
     } else {
       // API call failed
-      Get.snackbar('','Failed to Login');
+      Get.to(() => HomePage());
+      Get.snackbar('Login','Failed to Login');
     }
     }
 }

@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Text(
                           cartController.items.length.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,

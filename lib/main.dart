@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/app/utils/ThemeData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,7 +13,7 @@ import 'app/controllers/OrdersController.dart';
 import 'app/views/mobileView/Home/Home.dart';
 import 'app/views/mobileView/IntroductionPageView.dart';
 import 'app/views/mobileView/RegistrationPage.dart';
-
+import 'app/utils/ThemeData.dart';
 
 void main() {
   Get.put(CartController());
@@ -34,13 +35,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'ECommerce',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreenAccent),
-        primaryColor: Colors.lightGreenAccent,
-        useMaterial3: true,
-        fontFamily: 'Poppins'
-      ),
-      home: SplashScreen()//const ResponsiveLayout(),
+      theme: ShopThemeData,
+      home: const ResponsiveLayout(),
     );
   }
 }

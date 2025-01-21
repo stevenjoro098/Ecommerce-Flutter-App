@@ -21,7 +21,7 @@ class FlashProductGrid extends StatelessWidget {
       }
       return Container(
           //margin: const EdgeInsets.symmetric(vertical: 10),
-          //height: MediaQuery.of(context).size.height * 0.2,
+         //height: MediaQuery.of(context).size.height * 0.2,
         //width: MediaQuery.of(context).size.width,
         child: ScrollConfiguration(
           behavior: CustomScrollBehavior(),

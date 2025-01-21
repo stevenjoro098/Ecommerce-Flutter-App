@@ -57,6 +57,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           backgroundColor: Colors.transparent,
           actions: [
             IconButton(
+                onPressed: (){
+
+                },
+                icon: const Icon(Icons.share)
+            ),
+            IconButton(
               icon: const Icon(Icons.cleaning_services),
               onPressed: () {
                 setState(() {

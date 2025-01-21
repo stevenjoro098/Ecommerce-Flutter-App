@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/main.dart';
 import 'package:flutter/material.dart';
 
 import '../views/mobileView/Home/Home.dart';
@@ -14,7 +15,7 @@ class ResponsiveLayout extends StatelessWidget {
         builder: (context, constraints){
           if (constraints.maxWidth < mobileWidth) {
             //For Mobile UI
-            return HomePage();
+            return SplashScreen();
           } else {
             return Column(
               children: [

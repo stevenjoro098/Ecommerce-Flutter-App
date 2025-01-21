@@ -20,6 +20,7 @@ class CartController extends GetxController {
   // remove an item form the cart
   void removeItem(String slug){
       items.remove(slug);
+      Get.snackbar('Cart', 'Items in the Cart Removed Successfully');
   }
 
   //remove clear cart
