@@ -17,8 +17,8 @@ Welcome to the **E-Commerce App**, a Flutter-based mobile application designed t
   ![Secure Checkout Screenshot](assets/screenshots/checkout.png)
 - **User Accounts**: Register and log in to save your preferences and order history.  
   ![User Accounts Screenshot](assets/screenshots/register.png)
-- **User Login**: Login User
-    ![User Login](assets/screenshots/login.png)
+- **User Login**: Login User.
+  ![User Login](assets/screenshots/login.png)
 ### Additional Features
 - **Wishlist**: Save products to your wishlist for future purchases.  
   ![Wishlist Screenshot](assets/screenshots/wishlist.png)
