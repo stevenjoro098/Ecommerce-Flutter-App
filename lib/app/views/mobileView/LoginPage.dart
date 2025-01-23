@@ -1,10 +1,12 @@
 import 'package:ecommerce_app/app/controllers/RegisterLoginController.dart';
 import 'package:ecommerce_app/app/views/mobileView/RegistrationPage.dart';
+
 import 'package:entry/entry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -87,11 +89,11 @@ class LoginPage extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: (){},
-                    icon:Icon(Icons.g_mobiledata_outlined,size: 40)
+                    icon:Icon(FontAwesomeIcons.google,size: 34)
                 ),
                 IconButton(
                     onPressed: (){},
-                    icon:Icon(Icons.android,size: 40)
+                    icon:Icon(FontAwesomeIcons.twitter,size: 34)
                 ),
 
               ],

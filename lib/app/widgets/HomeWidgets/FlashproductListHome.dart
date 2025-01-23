@@ -30,30 +30,33 @@ class FlashProductGrid extends StatelessWidget {
             itemCount: flashproductcontroller.products.length,
             itemBuilder: (context, index) {
               final products = flashproductcontroller.products[index];
-              return GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProductDetailScreen(
-                      productName: products.name,
-                      slug: products.slug,
-                      price: products.price,
-                      imageUrl: products.iconPath,
-                      productDescription: products.description,
-                    )),
-                  );
-                },
-                child: Hero(
-                  tag: '${products.name}-hero-image',
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * .6,
-                    child: Entry.scale(
-                      duration: const Duration(seconds: 1),
-                      child: ProductCard(
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProductDetailScreen(
+                        productName: products.name,
                         slug: products.slug,
+                        price: products.price,
                         imageUrl: products.iconPath,
-                        productName: products.name, // Display actual product name
-                        productPrice: products.price, // Display actual product price
+                        productDescription: products.description,
+                      )),
+                    );
+                  },
+                  child: Hero(
+                    tag: '${products.name}-hero-image',
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * .6,
+                      child: Entry.scale(
+                        duration: const Duration(seconds: 1),
+                        child: ProductCard(
+                          slug: products.slug,
+                          imageUrl: products.iconPath,
+                          productName: products.name, // Display actual product name
+                          productPrice: products.price, // Display actual product price
+                        ),
                       ),
                     ),
                   ),

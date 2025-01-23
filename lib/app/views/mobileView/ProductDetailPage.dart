@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:entry/entry.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../controllers/CartController.dart';
+import '../../widgets/DeliveryForm.dart';
+import '../../widgets/HomeWidgets/ShareWidget.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final String productName;
@@ -31,6 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   late Function(GlobalKey) runAddToCartAnimation;
   var _cartQuantityItems = 0;
 
+  bool isFavorite = false;
   var visible = true;
 
   @override
@@ -58,7 +61,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           actions: [
             IconButton(
                 onPressed: (){
-
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) => ShareContentView(),
+                  );
                 },
                 icon: const Icon(Icons.share)
             ),
@@ -108,15 +115,31 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                widget.productName,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    widget.productName,
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                IconButton(
+                    onPressed: (){
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      },
+                    icon: Icon(
+                        isFavorite ? Icons.favorite_outlined: Icons.favorite,
+                      color: isFavorite ? Colors.red:Colors.blueGrey,
+                    )
+                )
+              ],
             ),
             StarRatingWidget(),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Entry.all(
               visible: visible,
               duration: const Duration(seconds: 1),
@@ -126,7 +149,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   color: Colors.grey[300],
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("${widget.price}"),
+                      child: Text("Ksh. ${widget.price}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.blueGrey),),
                     )
                 ),
               ),

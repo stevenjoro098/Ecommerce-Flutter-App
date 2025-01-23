@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../widgets/IconButtonCircularBg.dart';
 import '../../widgets/SearchTextBar.dart';
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 40,),
+          const SizedBox(height: 30,),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -42,8 +43,16 @@ class _HomeViewState extends State<HomeView> {
                       }
                       ),
                       Column(
+
                         children: [
-                          Text(deliveryInfoController.fullName.toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 2),),
+                          AutoSizeText(
+                            deliveryInfoController.fullName.toString(),
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            style:const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14, letterSpacing: 2),
+                          ),
                           Text(deliveryInfoController.email.toString(), style: const TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),),
                         ],
                       ),
