@@ -12,7 +12,7 @@ Welcome to the **E-Commerce App**, a Flutter-based mobile application designed t
 - **Search and Filter**: Easily find products using the search bar and filter options.  
   ![Search and Filter Screenshot](assets/screenshots/search_filter.png)
 - **Shopping Cart**: Add, remove, and update items in your cart.  
-  ![Shopping Cart Screenshot](/home/steve/Pictures/cart page.png)
+  ![Shopping Cart Screenshot](assets/screenshots/cart_page.png)
 - **Secure Checkout**: Place orders with a secure payment gateway.  
   ![Secure Checkout Screenshot](assets/screenshots/secure_checkout.png)
 - **User Accounts**: Register and log in to save your preferences and order history.  
